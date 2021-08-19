@@ -6,7 +6,7 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"compile": "tsc --watch",
-		"dev": "nodemon dist/app.js"
+		"serve": "nodemon dist/app.js"
 	},
 	"keywords": [],
 	"author": "",
