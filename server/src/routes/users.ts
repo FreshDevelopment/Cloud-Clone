@@ -13,6 +13,7 @@ import {
 	isRoleValid,
 	existsUserById,
 } from '../helpers/db-validator';
+import { isAdminRole } from '../middlewares/validate-roles';
 import validateFields from '../middlewares/validate-fields';
 import { validateJWT } from '../middlewares/validate-jwt';
 
@@ -33,6 +34,7 @@ router.get(
 router.post(
 	'/',
 	[
+		validateJWT,
 		check('firstName', 'First name can not be empty').not().isEmpty(),
 		check('lastName', 'Last name can not be empty').not().isEmpty(),
 		check('email', 'Email can not be empty').not().isEmpty(),
@@ -44,7 +46,7 @@ router.post(
 			}),
 		check('email', 'Email is not valid').optional().isEmail(),
 		check('email').custom(emailExists),
-		check('role').optional().custom(isRoleValid),
+		isAdminRole,
 		validateFields,
 	],
 	postUser

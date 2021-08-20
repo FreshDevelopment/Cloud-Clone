@@ -22,22 +22,26 @@ const UserSchema = new Schema({
 		type: String,
 		default: Date,
 	},
-	img: {
+	image: {
 		type: String,
 	},
 	role: {
 		type: String,
 		required: true,
 		default: 'USER_ROLE',
-		enum: ['ADMIN_ROLE', 'USER_ROLE', 'PREMIUN_ROLE'],
+		enum: ['ADMIN_ROLE', 'USER_ROLE', 'MANAGER_ROLE', 'STUDENT_ROLE'],
 	},
-	condition: {
+	active: {
 		type: Boolean,
 		default: true,
 	},
-	google: {
-		type: Boolean,
-		default: false,
+	identification: {
+		type: String,
+		required: [true, 'Identification is required'],
+	},
+	Grade: {
+		type: Number,
+		required: [true, 'Grade is required'],
 	},
 });
 
